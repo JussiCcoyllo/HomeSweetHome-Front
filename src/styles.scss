@@ -1,0 +1,131 @@
+@import 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css';
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
+/* You can add global styles to this file, and also import other style files */
+body{
+  background: url('./assets/images/backlogo.png') fixed no-repeat right bottom;
+  background-size: 40%;
+
+}
+
+a {
+  cursor: pointer;
+}
+
+.navbar {
+  margin-bottom: 30px;
+
+
+}
+
+.card {
+  border: none;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+  margin-bottom: 30px;
+}
+
+.w-60 {
+  width: 60px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+.social-links li a {
+  -webkit-border-radius: 50%;
+  background-color: rgba(89, 206, 181, .85);
+  border-radius: 50%;
+  color: #fff;
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  width: 30px;
+  font-size: 12px;
+}
+
+a {
+  color: #707070;
+}
+i {
+  color: white;
+}
+
+a {
+  color: white;
+}
+
+.bg-dark {
+  background-color: #07c0df!important;
+}
+.btn-secondary {
+  color: #fff;
+  background-color: #60167e;
+  border-color: #60167e;
+}
+
+.btn-primary[_ngcontent-ng-c2281162070] {
+  display: block;
+  width: 80%!important;
+  margin: 20px auto;
+  border-radius: 50px;
+  /* color: #fff; */
+  background-color: #60167e!important;
+}
+/* .btn-primary {
+    color: #fff;
+    background-color: #60167e;
+    border-color: #b183c4;
+    border-radius: 1.1em;
+} */
+
+.btn-primary {
+  color: #fff;
+  background-color: #b183c4;
+  border-color: #bf73df;
+}
+
+.form-control-lg {
+  height: calc(2.875rem + 2px);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 50px;
+}
+.btn-group-lg>.btn, .btn-lg {
+  padding: 0.5rem 1rem;
+  width: 80%;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  border-radius: 1.3rem;
+  background-color: #60167e;
+
+}
+
+@media (min-width: 1200px) {
+  .col-xl-3 {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 72%;
+    max-width: 41%;
+  }
+}
+
+.card, .m-b-30{
+  background: #edf0f1!important;
+}
+.list-group-item{
+  background: #edf0f1!important;
+}
+
+.bg-img {
+
+  /* The image used */
+
+}
