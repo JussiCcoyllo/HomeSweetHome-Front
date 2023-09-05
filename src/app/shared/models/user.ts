@@ -1,8 +1,12 @@
-export interface User{
-  id:number;
-  email:string;
-  password:string;
-  role:Role[];
+export class User{
+  id!:number;
+  fullname!:string;
+  username!:string;
+  email!:string;
+  password!:string;
+  confirmPassword!:string;
+  role!:Role[];
+  contract!:number;
 }
 
 export enum Role{
