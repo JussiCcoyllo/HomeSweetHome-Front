@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AdminService} from "../shared/services/admin.service";
 
 
+
 @NgModule({
   declarations: [
     AddPropertyComponent,
@@ -20,6 +21,7 @@ import {AdminService} from "../shared/services/admin.service";
     AdminRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    
   ],
   providers:[
     AdminService

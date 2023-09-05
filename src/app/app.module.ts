@@ -12,6 +12,7 @@ import { SupplierComponent } from './supplier/supplier.component';
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import { NavBarComponent } from './core/components/nav-bar/nav-bar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NavBarComponent } from './core/components/nav-bar/nav-bar.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CommonModule
+    CommonModule, 
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

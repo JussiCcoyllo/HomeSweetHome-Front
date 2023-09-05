@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {Property} from "../shared/models/property";
-import {HttpErrorResponse} from "@angular/common/http";
-import {NgForm} from "@angular/forms";
-import {PropertyService} from "../shared/services/property.service";
+import { Component, OnInit } from '@angular/core';
+import { PropertyService } from '../../app/shared/services/property.service';
+import { Property } from '../../app/shared/models/property';
+import { HttpErrorResponse } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-
   public properties!: Property[];
   public editProperty!: Property;
   public deleteProperty!: Property;
@@ -111,5 +111,4 @@ export class AdminComponent implements OnInit {
     container?.appendChild(button);
     button.click();
   }
-
 }
