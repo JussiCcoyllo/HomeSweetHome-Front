@@ -24,19 +24,20 @@
           <div class="col-6 card-title align-self-center mb-0">
             <h5>Issue</h5>
             <!-- To add issue reported by tenant -->
-            <p class="m-0">N°Contract</p>
-            <!-- To add contract number -->
           </div>
         </div>
         <ul class="list-group list-group-flush">
+          <li class="list-group-item">Description Issue: {{property?.address}}</li>
+          <li class="list-group-item">Date Issue: {{property?.address}}</li>
           <li class="list-group-item">Address: {{property?.address}}</li>
           <li class="list-group-item">Number: {{property?.number}}</li>
           <li class="list-group-item">District : {{property?.district}}</li>
           <li class="list-group-item">Postal Code : {{property?.postalCode}}</li>
-          <li class="list-group-item">Description : {{property?.description}}</li>
+          <li class="list-group-item">Description Property: {{property?.description}}</li>
+          <li class="list-group-item">N° Contract : {{property?.postalCode}}</li>
           <li class="list-group-item">Tenant : Ms. Vershub </li>
           <!-- to add tenant's fullname -->
-          <li class="list-group-item">Provider asigned: Mr. Smith </li>
+          <li class="list-group-item">Supplier asigned: Mr. Smith </li>
           <!-- to add provider -->
           <li class="list-group-item">Status: in progress </li>
           <!-- to add status -->
@@ -86,10 +87,10 @@
                 placeholder="Postal Code" required>
             </div>
             <div class="form-group">
-              <label for="district">Description</label>
+              <label for="district">Description Property</label>
               <input type="text" ngModel name="description" class="form-control" id="description"
                 placeholder="Description" required>
-            </div>
+            </div>            
             <div class="modal-footer">
               <button type="button" id="add-property-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Save
@@ -135,9 +136,14 @@
                 id="postalCode" placeholder="Postal Code">
             </div>
             <div class="form-group">
-              <label for="phone">Description</label>
+              <label for="phone">Description Property</label>
               <input type="text" ngModel="{{editProperty?.description}}" name="description" class="form-control"
                 id="description" placeholder="Description">
+            </div>
+            <div class="form-group">
+              <label for="phone">Assign Supplier</label>
+              <input type="text" ngModel="{{editProperty?.description}}" name="description" class="form-control" id="description"
+                placeholder="Description">
             </div>
             <div class="modal-footer">
               <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
