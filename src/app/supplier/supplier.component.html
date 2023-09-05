@@ -1,1 +1,101 @@
-<p>supplier works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" style="color:white;">HSH Property Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+        aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <!-- <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Property <span class="sr-only">(current)</span></a> -->
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input type="search" (ngModelChange)="searchProperties(key.value)" #key="ngModel" ngModel name="key"
+                id="searchName" class="form-control mr-sm-2" placeholder="Search property..." required>
+        </form>
+    </div>
+</nav>
+<div class="container" id="main-container">
+    <div class="row">
+        <div *ngFor="let property of properties" class="col-md-6 col-xl-3">
+            <div class="card m-b-30">
+                <div class="card-body row">
+                    <div class="col-6 card-title align-self-center mb-0">
+                        <h5>Issue</h5>
+                        <!-- To add issue reported by tenant -->
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Description Issue: {{property?.address}}</li>
+                    <li class="list-group-item">Date Issue: {{property?.address}}</li>
+                    <li class="list-group-item">Address: {{property?.address}}</li>
+                    <li class="list-group-item">Number: {{property?.number}}</li>
+                    <li class="list-group-item">District : {{property?.district}}</li>
+                    <li class="list-group-item">Postal Code : {{property?.postalCode}}</li>
+                    <li class="list-group-item">Description Property: {{property?.description}}</li>
+                    <li class="list-group-item">N° Contract : {{property?.postalCode}}</li>
+                    <li class="list-group-item">Tenant : Ms. Vershub </li>
+                    <!-- to add tenant's fullname -->
+
+                    <li class="list-group-item">Status: in progress </li>
+                    <!-- to add status -->
+                    <li class="list-group-item">Description Solution: </li>
+                    <!-- to add provider -->
+                </ul>
+                <div class="card-body">
+                    <div class="float-right btn-group btn-group-sm">
+                        <a (click)="onOpenModal(property, 'edit')" class="btn btn-primary tooltips" data-placement="top"
+                            data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                        <a (click)="onOpenModal(property, 'delete')" class="btn btn-secondary tooltips"
+                            data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="updatePropertyModal" tabindex="-1" role="dialog"
+        aria-labelledby="propertyEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <h5 class="modal-title" id="updatePropertyModalLabel">Edit Property {{editProperty?.address}}</h5> -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form #editForm="ngForm">
+                        <div class="form-group">
+                            <label for="name">Status</label>
+                            <input type="text" ngModel="{{editProperty?.address}}" name="address" class="form-control"
+                                id="address" aria-describedby="address" placeholder="Address">
+                        </div>
+                        <div class="form-group">
+                            <label for="number">Description Solution:</label>
+                            <input type="email" ngModel="{{editProperty?.number}}" name="number" class="form-control"
+                                id="number" placeholder="Number">
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                            <button (click)="onUpdateProperty(editForm.value)" data-dismiss="modal"
+                                class="btn btn-primary">Save
+                                changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+<!-- Notification for properties not found -->
+<div *ngIf="properties?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+    <div class="alert alert-info" role="alert">
+        <h4 class="alert-heading">NO PROPERTIES!</h4>
+        <p>No Properties were found.</p>
+    </div>
+</div>
