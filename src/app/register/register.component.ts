@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   userRegister(){
     console.log(this.user);
     this.registerService.registerUser(this.user).subscribe(data=>{
-     alert("Successfully User is register?")
+     alert("Successfully Register User")
     },error=>alert("Sorry User not register"));
   }
 
