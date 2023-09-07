@@ -21,6 +21,10 @@ export class AdminComponent implements OnInit {
     this.getProperties();
   }
 
+  public getNewProperty(): Property {
+    return { id: -1, address: "", district: "", number: -1, postalCode: -1, description: "" }
+  }
+
   public getProperties(): void {
     this.propertyService.getProperties().subscribe(
       (response: Property[]) => {
@@ -34,7 +38,7 @@ export class AdminComponent implements OnInit {
   }
 
   public onAddProperty(addForm: NgForm): void {
-    // document.getElementById('add-property-form').click();
+    document.getElementById('add-property-form')?.click();
     this.propertyService.addProperty(addForm.value).subscribe(
       (response: Property) => {
         console.log(response);
@@ -49,6 +53,7 @@ export class AdminComponent implements OnInit {
   }
 
   public onUpdateProperty(property: Property): void {
+    property.id = this.editProperty.id
     this.propertyService.updateProperty(property).subscribe(
       (response: Property) => {
         console.log(response);
@@ -77,11 +82,10 @@ export class AdminComponent implements OnInit {
     const results: Property[] = [];
     for (const property of this.properties) {
       if (
-        property.address.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        property.number ||
-        property.district.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        property.postalCode
-      ) {
+        property.address.toLowerCase().indexOf(key.toLowerCase()) !== -1 
+        || property.number !== -1 
+        || property.district.toLowerCase().indexOf(key.toLowerCase()) !== -1 
+        || property.postalCode !== -1) {
         results.push(property);
       }
     }

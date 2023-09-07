@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <!-- <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Property <span class="sr-only">(current)</span></a> -->
+        <a class="nav-link" (click)="onOpenModal(this.getNewProperty(), 'add')">Add Property <span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -23,7 +23,6 @@
         <div class="card-body row">
           <div class="col-6 card-title align-self-center mb-0">
             <h5>Issue:</h5>
-            <!-- To add issue reported by tenant -->
           </div>
         </div>
         <ul class="list-group list-group-flush">
@@ -35,6 +34,7 @@
           <li class="list-group-item"><strong>Tenant:</strong>  </li>
           <li class="list-group-item"><strong>Supplier asigned:</strong> </li>
           <li class="list-group-item"><strong>Status:</strong>  </li>
+          <li class="list-group-item"><strong>Description solution:</strong> </li>
         </ul>
         <div class="card-body">
           <div class="float-right btn-group btn-group-sm">
@@ -167,8 +167,8 @@
           <p>Are you sure you want to delete property {{deleteProperty?.address}}?</p>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            <!-- <button (click)="onDeleteProperty(deleteProperty?.id)" class="btn btn-danger"
-              data-dismiss="modal">Yes</button> -->
+            <button (click)="onDeleteProperty(deleteProperty.id)" class="btn btn-danger"
+              data-dismiss="modal">Yes</button>
           </div>
         </div>
       </div>
