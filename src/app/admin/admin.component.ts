@@ -75,14 +75,14 @@ export class AdminComponent implements OnInit {
   public searchProperties(key: string): void {
     console.log(key);
     const results: Property[] = [];
-    for (const employee of this.properties) {
+    for (const property of this.properties) {
       if (
-        employee.address.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        employee.number ||
-        employee.district.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        employee.postalCode
+        property.address.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+        property.number ||
+        property.district.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+        property.postalCode
       ) {
-        results.push(employee);
+        results.push(property);
       }
     }
     this.properties = results;
