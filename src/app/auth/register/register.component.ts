@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   fullname: string = '';
   username: string = '';
   password: string = '';
-  email: string='';
+  email: string = '';
   confirmPassword: string = '';
   role: string = '';
   // contract!: number;
@@ -23,11 +23,12 @@ export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService, private route: Router) {
     this.roles = ['tenant', 'supplier'];
   }
+ 
 
   ngOnInit(): void {
     this.user.fullname = '';
     this.user.username = '';
-    this.user.email='';
+    this.user.email = '';
     this.user.password = '';
     this.user.confirmPassword = '';
     this.user.role = '';
@@ -40,7 +41,7 @@ export class RegisterComponent implements OnInit {
     this.user.email = this.email;
     this.user.password = this.password;
     this.user.confirmPassword = this.confirmPassword;
-    this.user.role = 'tenant'||'supplier';
+    this.user.role = 'tenant' || 'supplier';
     // this.user.contract = this.contract;
 
     this.authService.signUp(this.user).subscribe(

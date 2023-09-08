@@ -45,17 +45,18 @@
                   </small> -->
                 </div>
                 <div class="form-group">
-                  <label>Select role</label>
+                  <label>Select a Role</label>
                   <select class="form-control form-control-lg" type="role" name="role" [(ngModel)]="role" placeholder="Enter your role">
                     <option value="">--Please choose an option--</option>
                     <option *ngFor="let r of roles" [value]="r">{{r}}</option>
+
                   </select>
                 </div>
-                <!-- <div class="form-group">
-                  <label>N° Contract</label>
+                <div *ngIf="role==='tenant'" class="form-group">
+                  <label>Contract</label>
                   <input class="form-control form-control-lg" type="contract" name="contract" id="contract" [(ngModel)]="user.contract"
                     placeholder="Enter your contract's number">
-                </div> -->
+                </div>
                 <!-- <div>
                     <div class="custom-control custom-checkbox align-items-center">
                         <input type="checkbox" class="custom-control-input" value="remember-me"
@@ -65,7 +66,7 @@
                 </div> -->
                 <div class="text-center mt-3">
                   <!-- <a href="index.html" class="btn btn-lg btn-primary">Sign up</a> -->
-                  <button type="submit" (click)="signup()"class="btn btn-lg btn-primary">Sign up</button>
+                  <button type="submit" (click)="signup()"class="btn btn-lg btn-primary">REGISTER</button>
                 </div>
               </form>
             </div>
