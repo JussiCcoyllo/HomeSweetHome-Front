@@ -3,6 +3,8 @@ import { PropertyService } from '../../app/shared/services/property.service';
 import { Property } from '../../app/shared/models/property';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -15,14 +17,29 @@ export class AdminComponent implements OnInit {
   public editProperty!: Property;
   public deleteProperty!: Property;
 
-  constructor(private propertyService: PropertyService) {}
+  constructor(
+    private propertyService: PropertyService,
+    private route: Router
+  ) {}
 
   ngOnInit(): void {
     this.getProperties();
   }
 
+  logout() {
+    localStorage.removeItem('token');
+    this.route.navigate(['/']);
+  }
+
   public getNewProperty(): Property {
-    return { id: -1, address: "", district: "", number: -1, postalCode: -1, description: "" }
+    return {
+      id: -1,
+      address: '',
+      district: '',
+      number: -1,
+      postalCode: -1,
+      description: '',
+    };
   }
 
   public getProperties(): void {
@@ -53,7 +70,7 @@ export class AdminComponent implements OnInit {
   }
 
   public onUpdateProperty(property: Property): void {
-    property.id = this.editProperty.id
+    property.id = this.editProperty.id;
     this.propertyService.updateProperty(property).subscribe(
       (response: Property) => {
         console.log(response);
@@ -82,10 +99,11 @@ export class AdminComponent implements OnInit {
     const results: Property[] = [];
     for (const property of this.properties) {
       if (
-        property.address.toLowerCase().indexOf(key.toLowerCase()) !== -1 
-        || property.number !== -1 
-        || property.district.toLowerCase().indexOf(key.toLowerCase()) !== -1 
-        || property.postalCode !== -1) {
+        property.address.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+        property.number !== -1 ||
+        property.district.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+        property.postalCode !== -1
+      ) {
         results.push(property);
       }
     }

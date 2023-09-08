@@ -8,7 +8,8 @@ import {SupplierComponent} from "./supplier/supplier.component";
 import {TenantComponent} from "./tenant/tenant.component";
 
 const routes: Routes = [
-  {path:'admin', loadChildren:()=>import('./admin/admin.module').then(a=>a.AdminModule)},
+  // {path:'admin', loadChildren:()=>import('./admin/admin.module').then(a=>a.AdminModule)},
+  {path:'admin', component:AdminComponent},
   {path:'landing', component: LandingPageComponent},
   {path:'login', component: LoginComponent},
   {path:'register', component: RegisterComponent},
