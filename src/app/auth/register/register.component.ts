@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../shared/services/auth.service';
-import { User } from '../shared/models/user';
+import { AuthService } from '../../shared/services/auth.service';
+import { User } from '../../shared/models/user';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   fullname: string = '';
   username: string = '';
   password: string = '';
-  confirmPassword: string='';
+  confirmPassword: string = '';
   role: string = '';
   contract!: number;
 
@@ -26,10 +26,9 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.user.username = '';
     this.user.password = '';
-    this.user.confirmPassword='';
+    this.user.confirmPassword = '';
     this.user.fullname = '';
     this.user.role = '';
-
   }
 
   signup() {

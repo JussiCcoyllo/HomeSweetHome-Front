@@ -1,0 +1,15 @@
+diff --git a/src/app/shared/services/auth.service.ts b/src/app/shared/services/auth.service.ts
+index f563136..fca2b76 100644
+--- a/src/app/shared/services/auth.service.ts
++++ b/src/app/shared/services/auth.service.ts
+@@ -11,8 +11,8 @@ export class AuthService {
+   signUpUrl: string = '';
+ 
+   constructor(private http: HttpClient) {
+-    this.loginUrl = 'http://localhost:8080/login';
+-    this.signUpUrl = 'http://localhost:8080/register';
++    this.loginUrl = 'http://localhost:8080/auth/login';
++    this.signUpUrl = 'http://localhost:8080/auth/register';
+   }
+ 
+   login(user: User): Observable<any> {

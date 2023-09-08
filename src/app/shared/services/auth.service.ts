@@ -11,8 +11,8 @@ export class AuthService {
   signUpUrl: string = '';
 
   constructor(private http: HttpClient) {
-    this.loginUrl = 'http://localhost:8080/login';
-    this.signUpUrl = 'http://localhost:8080/register';
+    this.loginUrl = 'http://localhost:8080/auth/login';
+    this.signUpUrl = 'http://localhost:8080/auth/register';
   }
 
   login(user: User): Observable<any> {
