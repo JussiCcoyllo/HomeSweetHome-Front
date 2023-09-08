@@ -12,30 +12,36 @@ export class RegisterComponent implements OnInit {
   fullname: string = '';
   username: string = '';
   password: string = '';
+  email: string='';
   confirmPassword: string = '';
   role: string = '';
-  contract!: number;
+  // contract!: number;
 
   user: User = new User();
   roles: string[];
 
   constructor(private authService: AuthService, private route: Router) {
-    this.roles = ['Tenant', 'Supplier'];
+    this.roles = ['tenant', 'supplier'];
   }
 
   ngOnInit(): void {
+    this.user.fullname = '';
     this.user.username = '';
+    this.user.email='';
     this.user.password = '';
     this.user.confirmPassword = '';
-    this.user.fullname = '';
     this.user.role = '';
+    // this.user.contract;
   }
 
   signup() {
-    this.user.username = this.username;
-    this.user.password = this.password;
     this.user.fullname = this.fullname;
-    this.user.role = 'user';
+    this.user.username = this.username;
+    this.user.email = this.email;
+    this.user.password = this.password;
+    this.user.confirmPassword = this.confirmPassword;
+    this.user.role = 'tenant'||'supplier';
+    // this.user.contract = this.contract;
 
     this.authService.signUp(this.user).subscribe(
       (res) => {
@@ -45,7 +51,13 @@ export class RegisterComponent implements OnInit {
         } else {
           console.log('Registration successful');
           alert('Registration successful');
-          this.route.navigate(['/']);
+          if (this.role == 'tenant') {
+            this.route.navigate(['/tenant']);
+          }
+          if (this.role == 'supplier') {
+            this.route.navigate(['/supplier']);
+          }
+          // this.route.navigate(['/tenant']);
         }
       },
       (err) => {

@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.username = '';
     this.password = '';
+    this.role='';
   }
 
   login() {
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user).subscribe(
       (res) => {
         if (res == null) {
-          alert('Uername or password is wrong');
+          alert('Username or password is wrong');
           this.ngOnInit();
         } else {
           console.log('Login successful');
