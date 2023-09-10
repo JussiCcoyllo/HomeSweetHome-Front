@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
     this.user.password = '';
     this.user.confirmPassword = '';
     this.user.role = '';
-    // this.user.contract;
+    this.user.contract;
   }
 
   signup() {
@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
     this.user.password = this.password;
     this.user.confirmPassword = this.confirmPassword;
     this.user.role = 'tenant' || 'supplier';
-    // this.user.contract = this.contract;
+    this.user.contract;
 
     this.authService.signUp(this.user).subscribe(
       (res) => {

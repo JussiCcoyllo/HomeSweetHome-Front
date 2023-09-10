@@ -208,3 +208,15 @@ h1 {
 .btn-group-lg>.btn, .btn-lg {
   margin: 0.7em;
 }
+
+.btn-outline-success {
+    color: #ffffff;
+    border-color: white;
+    border-radius: 20px;
+}
+.btn:hover{
+  
+      background-color:#002ead;
+      transition: 0.7s;
+
+}

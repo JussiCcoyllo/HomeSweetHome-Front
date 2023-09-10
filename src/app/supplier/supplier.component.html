@@ -10,6 +10,7 @@
                 <!-- <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Property <span class="sr-only">(current)</span></a> -->
             </li>
         </ul>
+        <button class="btn btn-outline-success" (click)="logout()">Logout</button>
         <form class="form-inline my-2 my-lg-0">
             <input type="search" (ngModelChange)="searchProperties(key.value)" #key="ngModel" ngModel name="key"
                 id="searchName" class="form-control mr-sm-2" placeholder="Search property..." required>

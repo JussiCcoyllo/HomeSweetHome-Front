@@ -3,23 +3,29 @@ import { PropertyService } from '../../app/shared/services/property.service';
 import { Property } from '../../app/shared/models/property';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-supplier',
   templateUrl: './supplier.component.html',
   styleUrls: ['./supplier.component.scss'],
 })
-export class SupplierComponent {
+export class SupplierComponent implements OnInit {
   public properties!: Property[];
   public editProperty!: Property;
   public deleteProperty!: Property;
+  
 
-  constructor(private propertyService: PropertyService) {}
+  constructor(private propertyService: PropertyService,  private route: Router) {}
 
   ngOnInit(): void {
     this.getProperties();
   }
 
+  logout() {
+    localStorage.removeItem('token');
+    this.route.navigate(['/']);
+  }
   public getProperties(): void {
     this.propertyService.getProperties().subscribe(
       (response: Property[]) => {
