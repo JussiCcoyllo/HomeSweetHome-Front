@@ -1,6 +1,6 @@
-export class Issue{
-    id!:number;
-    issueName:string='';
-    issueDate:string='';
-    issueDescription:string='';
+export interface Issue{
+    id:number;
+    issueName:string;
+    issueDate:string;
+    issueDescription:string;
 }

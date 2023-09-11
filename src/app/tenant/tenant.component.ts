@@ -18,7 +18,9 @@ export class TenantComponent implements OnInit {
 
   constructor(private route: Router, private issueService: IssueService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getIssues();
+  }
 
   logout() {
     localStorage.removeItem('token');
@@ -79,5 +81,43 @@ export class TenantComponent implements OnInit {
         alert(error.message);
       }
     );
+  }
+
+  public searchIssues(key: string): void {
+    console.log(key);
+    const results: Issue[] = [];
+    for (const issue of this.issues) {
+      if (
+        issue.issueName.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+        issue.issueDate.toLowerCase().indexOf(key.toLowerCase()) !== -1 
+      ) {
+        results.push(issue);
+      }
+    }
+    this.issues = results;
+    if (results.length === 0 || !key) {
+      this.getIssues();
+    }
+  }
+
+  public onOpenModal(issue: Issue, mode: string): void {
+    const container = document.getElementById('main-container');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-toggle', 'modal');
+    if (mode === 'add') {
+      button.setAttribute('data-target', '#addIssueModal');
+    }
+    if (mode === 'edit') {
+      this.editIssue= issue;
+      button.setAttribute('data-target', '#updateIssueModal');
+    }
+    if (mode === 'delete') {
+      this.deleteIssue = issue;
+      button.setAttribute('data-target', '#deleteIssueModal');
+    }
+    container?.appendChild(button);
+    button.click();
   }
 }

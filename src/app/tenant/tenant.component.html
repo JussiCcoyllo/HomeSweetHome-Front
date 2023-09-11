@@ -1,123 +1,155 @@
-<div class="topnav">
-  <span>HSH Web App</span>
-  <span class="example-spacer"></span>
-  <button class="btn btn-outline-success" (click)="logout()">Logout</button>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h3 id="client" class="text-dark">Welcome Jussi</h3>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" style="color:white;">HSH Property Manager</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+    aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" (click)="onOpenModal(this.getNewIssue(), 'add')">Add Issue <span
+            class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <button class="btn btn-outline-success" (click)="logout()">Logout</button>
+    <form class="form-inline my-2 my-lg-0">
+      <input type="search" (ngModelChange)="searchIssues(key.value)" #key="ngModel" ngModel name="key"
+        id="searchName" class="form-control form-control-lg" placeholder="Search issue..." required>
+    </form>
+  </div>
+</nav>
+<div class="container" id="main-container">
+  <div class="col-lg-12">
+    <h3 id="client" class="text-dark">Welcome Jussi</h3>
   </div>
   <div class="row">
-    <div class="col-lg-12">
-      <div class="job-detail mt-2 p-4">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="resume-user mb-5">
-              <i class="mdi mdi-account text-white"></i>
-            </div>
+    <div *ngFor="let issue of issues" class="col-md-6 col-xl-3">
+      <div class="card m-b-30">
+        <div class="card-body row">
+          <div class="col-6 card-title align-self-center mb-0">
+            <h5>Issue: {{issue.issueName}}</h5>
           </div>
         </div>
-        <div class="table-responsive">
-          <table class="table user-list">
-            <thead>
-            <tr>
-              <th><span>Issue</span></th>
-              <th><span>Created</span></th>
-              <th class="text-center"><span>Status</span></th>
-              <th><span>Description</span></th>
-              <th>&nbsp;</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let issue of issues">
-              <td>
-                {{issue.issueName}}
-              </td>
-              <td>{{issue.issueDate}}</td>
-              <td class="text-center">
-                <span class="label label-default">pending</span>
-              </td>
-              <td>
-                {{issue.issueDescription}}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Issue 2
-              </td>
-              <td>09/09/2023</td>
-              <td class="text-center">
-                <span class="label label-default">pending</span>
-              </td>
-              <td>
-                Lighting problems in 2th floor
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Issue 3
-              </td>
-              <td>09/09/2023</td>
-              <td class="text-center">
-                <span class="label label-default">pending</span>
-              </td>
-              <td>
-                Lighting problems in 2th floor
-              </td>
-            </tr>
-            </tbody>
-          </table>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Date Issue: {{issue.issueDate}}</strong> </li>
+          <li class="list-group-item"><strong>Description Issue: {{issue.issueDescription}}</strong> </li>
+          <li class="list-group-item"><strong>Status:</strong> </li>
+          <li class="list-group-item"><strong>Description solution:</strong> </li>
+        </ul>
+        <div class="card-body">
+          <div class="float-right btn-group btn-group-sm">
+            <a (click)="onOpenModal(issue, 'edit')" class="btn btn-primary tooltips" data-placement="top"
+              data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+            <a (click)="onOpenModal(issue, 'delete')" class="btn btn-secondary tooltips" data-placement="top"
+              data-original-title="Delete"><i class="fa fa-times"></i></a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-lg-12">
-      <h3 class="text-dark mt-5">Add Issue</h3>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="job-detail mt-2 p-4">
-        <div class="custom-form">
+
+  <!-- Add issue Modal -->
+  <div class="modal fade" id="addIssueModal" tabindex="-1" role="dialog" aria-labelledby="addIssueModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addIssueModalLabel">Add Issue</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
           <form #addForm="ngForm" (ngSubmit)="onAddIssue(addForm)">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group app-label">
-                  <label for="company-name" class="text-muted">Issue</label>
-                  <input id="company-name" type="text" class="form-control resume" placeholder="Enter the issue">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group app-label">
-                  <label for="date-from" class="text-muted">Date</label>
-                  <input id="date-from" type="text" class="form-control resume"
-                         placeholder="dd/mm/yy">
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="form-group app-label">
-                  <label for="addition-information-1">Description issue</label>
-                  <textarea id="addition-information-1" rows="4" class="form-control resume"
-                            placeholder="Explain and describe the issue (more detailed possible)"></textarea>
-                </div>
-              </div>
+            <div class="form-group">
+              <label for="address">Issue</label>
+              <input type="text" ngModel name="issueName" class="form-control form-control-lg" id="issueName"
+                placeholder="Enter the issue" required>
+            </div>
+            <div class="form-group">
+              <label for="date">Date</label>
+              <input type="text" ngModel name="issueDate" class="form-control form-control-lg" id="text"
+                placeholder="dd/mm/yy" required>
+            </div>
+            <div class="form-group">
+              <label for="district">Description issue</label>
+              <input type="text" ngModel name="district" class="form-control form-control-lg" id="district"
+                placeholder="District" required>
+            </div>
+            
+            <div class="modal-footer">
+              <button type="button" id="add-issue-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Submit issue
+                </button>
             </div>
           </form>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="text-center">
-        <div>
-          <button type="button" id="add-issue-form" class="btn btn-primary">Submit issue
+
+  <!-- Edit Modal -->
+  <div class="modal fade" id="updateIssueModal" tabindex="-1" role="dialog" aria-labelledby="issueEditModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateIssueModalLabel">Edit Issue {{editIssue?.issueName}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
           </button>
-          <!-- <a href="index.html" class="btn btn-lg btn-primary">Submit Issue</a> -->
+        </div>
+        <div class="modal-body">
+          <form #editForm="ngForm">
+            <div class="form-group">
+              <label for="name">Date</label>
+              <input type="text" ngModel="{{editIssue?.issueDate}}" name="address" class="form-control form-control-lg"
+                id="address" aria-describedby="address" placeholder="dd/mm/yy">
+            </div>
+            <div class="form-group">
+              <label for="phone">Description Issue</label>
+              <input type="text" ngModel="{{editIssue?.issueDescription}}" name="issueDescription"
+                class="form-control form-control-lg" id="district" placeholder="Detail the issue">
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+              <button (click)="onUpdateIssue(editForm.value)" data-dismiss="modal" class="btn btn-primary">Save
+                changes</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Delete Modal -->
+  <div class="modal fade" id="deleteIssueModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModelLabel">Delete Issue</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete issue {{deleteIssue?.issueName}}?</p>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            <button (click)="onDeleteIssue(deleteIssue.id)" class="btn btn-danger"
+              data-dismiss="modal">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Notification for properties not found -->
+<div *ngIf="issues?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+  <div class="alert alert-info" role="alert">
+    <h4 class="alert-heading">NO ISSUES!</h4>
+    <p>No Issues were found.</p>
+  </div>
+</div>
