@@ -11,11 +11,11 @@
             class="sr-only">(current)</span></a>
       </li>
     </ul>
-    <button class="btn btn-outline-success" (click)="logout()">Logout</button>
     <form class="form-inline my-2 my-lg-0">
       <input type="search" (ngModelChange)="searchIssues(key.value)" #key="ngModel" ngModel name="key"
-        id="searchName" class="form-control form-control-lg" placeholder="Search issue..." required>
+      id="searchName" class="form-control form-control-lg" placeholder="Search issue..." required>
     </form>
+    <button class="btn btn-outline-success" (click)="logout()">Logout</button>
   </div>
 </nav>
 <div class="container" id="main-container">
@@ -31,8 +31,8 @@
           </div>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><strong>Date Issue: {{issue.issueDate}}</strong> </li>
-          <li class="list-group-item"><strong>Description Issue: {{issue.issueDescription}}</strong> </li>
+          <li class="list-group-item"><strong>Date Issue: </strong> {{issue.issueDate}}</li>
+          <li class="list-group-item"><strong>Description Issue: </strong>{{issue.issueDescription}} </li>
           <li class="list-group-item"><strong>Status:</strong> </li>
           <li class="list-group-item"><strong>Description solution:</strong> </li>
         </ul>
@@ -72,9 +72,9 @@
                 placeholder="dd/mm/yy" required>
             </div>
             <div class="form-group">
-              <label for="district">Description issue</label>
-              <input type="text" ngModel name="district" class="form-control form-control-lg" id="district"
-                placeholder="District" required>
+              <label for="issueDescription">Description issue</label>
+              <input type="text" ngModel name="issueDescription" class="form-control form-control-lg" id="issueDescription"
+                placeholder="Detail the issue" required>
             </div>
             
             <div class="modal-footer">
@@ -94,7 +94,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="updateIssueModalLabel">Edit Issue {{editIssue?.issueName}}</h5>
+          <h5 class="modal-title" id="updateIssueModalLabel">Edit Issue </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -102,14 +102,19 @@
         <div class="modal-body">
           <form #editForm="ngForm">
             <div class="form-group">
+              <label for="name">Issue</label>
+              <input type="text" ngModel="{{editIssue?.issueName}}" name="issueName" class="form-control form-control-lg" id="issueName"
+                aria-describedby="address" placeholder="Enter the issue">
+            </div>
+            <div class="form-group">
               <label for="name">Date</label>
-              <input type="text" ngModel="{{editIssue?.issueDate}}" name="address" class="form-control form-control-lg"
-                id="address" aria-describedby="address" placeholder="dd/mm/yy">
+              <input type="text" ngModel="{{editIssue?.issueDate}}" name="issueDate" class="form-control form-control-lg"
+                id="issueDate" aria-describedby="issueDate" placeholder="dd/mm/yy">
             </div>
             <div class="form-group">
               <label for="phone">Description Issue</label>
               <input type="text" ngModel="{{editIssue?.issueDescription}}" name="issueDescription"
-                class="form-control form-control-lg" id="district" placeholder="Detail the issue">
+                class="form-control form-control-lg" id="issueDescription" placeholder="Detail the issue">
             </div>
             <div class="modal-footer">
               <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>

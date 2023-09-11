@@ -10,14 +10,17 @@
         <a class="nav-link" (click)="onOpenModal(this.getNewProperty(), 'add')">Add Property <span class="sr-only">(current)</span></a>
       </li>
     </ul>
-    <button class="btn btn-outline-success" (click)="logout()">Logout</button>
     <form class="form-inline my-2 my-lg-0">
       <input type="search" (ngModelChange)="searchProperties(key.value)" #key="ngModel" ngModel name="key"
-        id="searchName" class="form-control form-control-lg" placeholder="Search property..." required>
+      id="searchName" class="form-control form-control-lg" placeholder="Search property..." required>
     </form>
+    <button class="btn btn-outline-success" (click)="logout()">Logout</button>
   </div>
 </nav>
 <div class="container" id="main-container">
+  <div class="col-lg-12">
+    <h3 id="client" class="text-dark">Welcome Admin</h3>
+  </div>
   <div class="row">
     <div *ngFor="let property of properties" class="col-md-6 col-xl-3">
       <div class="card m-b-30">
