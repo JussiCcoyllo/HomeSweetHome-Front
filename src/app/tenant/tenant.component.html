@@ -103,17 +103,17 @@
           <form #editForm="ngForm">
             <div class="form-group">
               <label for="name">Issue</label>
-              <input type="text" ngModel="{{editIssue?.issueName}}" name="issueName" class="form-control form-control-lg" id="issueName"
+              <input type="text" ngModel="{{editIssue.issueName}}" name="issueName" class="form-control form-control-lg" id="issueName"
                 aria-describedby="address" placeholder="Enter the issue">
             </div>
             <div class="form-group">
               <label for="name">Date</label>
-              <input type="text" ngModel="{{editIssue?.issueDate}}" name="issueDate" class="form-control form-control-lg"
+              <input type="text" ngModel="{{editIssue.issueDate}}" name="issueDate" class="form-control form-control-lg"
                 id="issueDate" aria-describedby="issueDate" placeholder="dd/mm/yy">
             </div>
             <div class="form-group">
               <label for="phone">Description Issue</label>
-              <input type="text" ngModel="{{editIssue?.issueDescription}}" name="issueDescription"
+              <input type="text" ngModel="{{editIssue.issueDescription}}" name="issueDescription"
                 class="form-control form-control-lg" id="issueDescription" placeholder="Detail the issue">
             </div>
             <div class="modal-footer">
@@ -139,7 +139,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>Are you sure you want to delete issue {{deleteIssue?.issueName}}?</p>
+          <p>Are you sure you want to delete issue {{deleteIssue.issueName}}?</p>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             <button (click)="onDeleteIssue(deleteIssue.id)" class="btn btn-danger"

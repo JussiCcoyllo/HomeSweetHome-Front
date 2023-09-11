@@ -7,48 +7,44 @@
     <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <!-- <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Property <span class="sr-only">(current)</span></a> -->
+                <a class="nav-link" (click)="onOpenModal(this.getNewSolution(), 'add')">Add Solution <span
+                        class="sr-only">(current)</span></a>
             </li>
         </ul>
-        <button class="btn btn-outline-success" (click)="logout()">Logout</button>
         <form class="form-inline my-2 my-lg-0">
-            <input type="search" (ngModelChange)="searchProperties(key.value)" #key="ngModel" ngModel name="key"
-                id="searchName" class="form-control mr-sm-2" placeholder="Search property..." required>
+            <input type="search" (ngModelChange)="searchSolutions(key.value)" #key="ngModel" ngModel name="key"
+                id="searchName" class="form-control form-control-lg" placeholder="Search solution..." required>
         </form>
+        <button class="btn btn-outline-success" (click)="logout()">Logout</button>
     </div>
 </nav>
 <div class="container" id="main-container">
+    <div class="col-lg-12">
+        <h3 id="client" class="text-dark">Welcome Supplier</h3>
+    </div>
     <div class="row">
-        <div *ngFor="let property of properties" class="col-md-6 col-xl-3">
+        <div *ngFor="let solution of solutions" class="col-md-6 col-xl-3">
             <div class="card m-b-30">
                 <div class="card-body row">
                     <div class="col-6 card-title align-self-center mb-0">
-                        <h5>Issue</h5>
-                        <!-- To add issue reported by tenant -->
+                        <h5>Issue:</h5>
                     </div>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Description Issue: {{property?.address}}</li>
-                    <li class="list-group-item">Date Issue: {{property?.address}}</li>
-                    <li class="list-group-item">Address: {{property?.address}}</li>
-                    <li class="list-group-item">Number: {{property?.number}}</li>
-                    <li class="list-group-item">District : {{property?.district}}</li>
-                    <li class="list-group-item">Postal Code : {{property?.postalCode}}</li>
-                    <li class="list-group-item">Description Property: {{property?.description}}</li>
-                    <li class="list-group-item">N° Contract : {{property?.postalCode}}</li>
-                    <li class="list-group-item">Tenant : Ms. Vershub </li>
-                    <!-- to add tenant's fullname -->
-
-                    <li class="list-group-item">Status: in progress </li>
-                    <!-- to add status -->
-                    <li class="list-group-item">Description Solution: </li>
-                    <!-- to add provider -->
+                    <li class="list-group-item"><strong>Description Issue: </strong> </li>
+                    <li class="list-group-item"><strong>Date Issue:</strong> </li>
+                    <li class="list-group-item"><strong>Address:</strong>  </li>
+                    <li class="list-group-item"><strong>Description Property:</strong>  </li>
+                    <li class="list-group-item"><strong>N° Contract:</strong> </li>
+                    <li class="list-group-item"><strong>Tenant:</strong> </li>
+                    <li class="list-group-item"><strong>Status:</strong> {{solution?.status}}</li>
+                    <li class="list-group-item"><strong>Description solution:</strong>{{solution?.descriptionSolution}}</li>
                 </ul>
                 <div class="card-body">
                     <div class="float-right btn-group btn-group-sm">
-                        <a (click)="onOpenModal(property, 'edit')" class="btn btn-primary tooltips" data-placement="top"
+                        <a (click)="onOpenModal(solution, 'edit')" class="btn btn-primary tooltips" data-placement="top"
                             data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-                        <a (click)="onOpenModal(property, 'delete')" class="btn btn-secondary tooltips"
+                        <a (click)="onOpenModal(solution, 'delete')" class="btn btn-secondary tooltips"
                             data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
                     </div>
                 </div>
@@ -56,13 +52,48 @@
         </div>
     </div>
 
-    <!-- Edit Modal -->
-    <div class="modal fade" id="updatePropertyModal" tabindex="-1" role="dialog"
-        aria-labelledby="propertyEditModalLabel" aria-hidden="true">
+    <!-- Add solution Modal -->
+    <div class="modal fade" id="addSolutionModal" tabindex="-1" role="dialog" aria-labelledby="addSolutionModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <!-- <h5 class="modal-title" id="updatePropertyModalLabel">Edit Property {{editProperty?.address}}</h5> -->
+                    <h5 class="modal-title" id="addSolutionModalLabel">Add Solution</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form #addForm="ngForm" (ngSubmit)="onAddSolution(addForm)">
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <input type="text" ngModel name="status" class="form-control form-control-lg" id="status"
+                                placeholder="Enter Status" required>
+                        </div>                        
+                        <div class="form-group">
+                            <label for="descriptionSolution">Description Solution</label>
+                            <input type="text" ngModel name="descriptionSolution" class="form-control form-control-lg"
+                                id="descriptionSolution" placeholder="Description Solution" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="add-solution-form" class="btn btn-secondary"
+                                data-dismiss="modal">Close</button>
+                            <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Save
+                                changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="updateSolutionModal" tabindex="-1" role="dialog"
+        aria-labelledby="solutionEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateSolutionModalLabel">Edit Solution</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -71,18 +102,19 @@
                     <form #editForm="ngForm">
                         <div class="form-group">
                             <label for="name">Status</label>
-                            <input type="text" ngModel="{{editProperty.address}}" name="address" class="form-control"
-                                id="address" aria-describedby="address" placeholder="Address">
+                            <input type="text" ngModel="{{editSolution?.status}}" name="status"
+                                class="form-control form-control-lg" id="status" aria-describedby="status"
+                                placeholder="Status">
                         </div>
                         <div class="form-group">
-                            <label for="number">Description Solution:</label>
-                            <input type="email" ngModel="{{editProperty.number}}" name="number" class="form-control"
-                                id="number" placeholder="Number">
+                            <label for="phone">Description Solution</label>
+                            <input type="text" ngModel="{{editSolution?.descriptionSolution}}" name="descriptionSolution"
+                                class="form-control form-control-lg" id="descriptionSolution" placeholder="Description Solution">
                         </div>
                         
                         <div class="modal-footer">
                             <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
-                            <button (click)="onUpdateProperty(editForm.value)" data-dismiss="modal"
+                            <button (click)="onUpdateSolution(editForm.value)" data-dismiss="modal"
                                 class="btn btn-primary">Save
                                 changes</button>
                         </div>
@@ -92,11 +124,34 @@
         </div>
     </div>
 
-    
-<!-- Notification for properties not found -->
-<div *ngIf="properties?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteSolutionModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModelLabel">Delete Solution</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete solution {{deleteSolution?.status}}?</p>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button (click)="onDeleteSolution(deleteSolution.id)" class="btn btn-danger"
+                            data-dismiss="modal">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Notification for solutions not found -->
+<div *ngIf="solutions?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
     <div class="alert alert-info" role="alert">
-        <h4 class="alert-heading">NO PROPERTIES!</h4>
-        <p>No Properties were found.</p>
+        <h4 class="alert-heading">NO SOLUTIONS!</h4>
+        <p>No Solutions were found.</p>
     </div>
 </div>

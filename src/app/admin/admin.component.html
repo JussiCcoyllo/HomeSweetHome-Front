@@ -13,8 +13,8 @@
     <form class="form-inline my-2 my-lg-0">
       <input type="search" (ngModelChange)="searchProperties(key.value)" #key="ngModel" ngModel name="key"
       id="searchName" class="form-control form-control-lg" placeholder="Search property..." required>
+      <button class="btn btn-outline-success" (click)="logout()">Logout</button>
     </form>
-    <button class="btn btn-outline-success" (click)="logout()">Logout</button>
   </div>
 </nav>
 <div class="container" id="main-container">

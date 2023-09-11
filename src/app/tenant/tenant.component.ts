@@ -115,7 +115,7 @@ export class TenantComponent implements OnInit {
     }
     if (mode === 'delete') {
       this.deleteIssue = issue;
-      button.setAttribute('data-target', '#deleteIssueModal');
+      button.setAttribute('data-target', '#deleteIssueeModal');
     }
     container?.appendChild(button);
     button.click();
