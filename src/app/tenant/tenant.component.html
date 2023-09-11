@@ -31,16 +31,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr *ngFor="let issue of issues">
               <td>
-                Issue 1
+                {{issue.issueName}}
               </td>
-              <td>09/09/2023</td>
+              <td>{{issue.issueDate}}</td>
               <td class="text-center">
                 <span class="label label-default">pending</span>
               </td>
               <td>
-                Lighting problems in 2th floor
+                {{issue.issueDescription}}
               </td>
             </tr>
             <tr>
@@ -82,26 +82,26 @@
     <div class="col-lg-12">
       <div class="job-detail mt-2 p-4">
         <div class="custom-form">
-          <form>
+          <form #addForm="ngForm" (ngSubmit)="onAddIssue(addForm)">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group app-label">
                   <label for="company-name" class="text-muted">Issue</label>
-                  <input id="company-name" type="text" class="form-control resume" placeholder="">
+                  <input id="company-name" type="text" class="form-control resume" placeholder="Enter the issue">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group app-label">
                   <label for="date-from" class="text-muted">Date</label>
                   <input id="date-from" type="text" class="form-control resume"
-                         placeholder="01-Jan-2018">
+                         placeholder="dd/mm/yy">
                 </div>
               </div>
               <div class="col-lg-12">
                 <div class="form-group app-label">
                   <label for="addition-information-1">Description issue</label>
                   <textarea id="addition-information-1" rows="4" class="form-control resume"
-                            placeholder=""></textarea>
+                            placeholder="Explain and describe the issue (more detailed possible)"></textarea>
                 </div>
               </div>
             </div>
@@ -114,7 +114,9 @@
     <div class="col-lg-12">
       <div class="text-center">
         <div>
-          <a href="index.html" class="btn btn-lg btn-primary">Submit Issue</a>
+          <button type="button" id="add-issue-form" class="btn btn-primary">Submit issue
+          </button>
+          <!-- <a href="index.html" class="btn btn-lg btn-primary">Submit Issue</a> -->
         </div>
       </div>
     </div>
