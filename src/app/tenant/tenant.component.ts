@@ -45,6 +45,17 @@ export class TenantComponent implements OnInit {
       }
     );
   }
+  public getIssueById(): void {
+    this.issueService.getIssues().subscribe(
+      (response: Issue[]) => {
+        this.issues = response;
+        console.log(this.issues);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
   public onAddIssue(addForm: NgForm): void {
     document.getElementById('add-issue-form')?.click();
     this.issueService.addIssue(addForm.value).subscribe(
@@ -89,7 +100,7 @@ export class TenantComponent implements OnInit {
     for (const issue of this.issues) {
       if (
         issue.issueName.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        issue.issueDate.toLowerCase().indexOf(key.toLowerCase()) !== -1 
+        issue.issueDate.toLowerCase().indexOf(key.toLowerCase()) !== -1
       ) {
         results.push(issue);
       }
@@ -110,7 +121,7 @@ export class TenantComponent implements OnInit {
       button.setAttribute('data-target', '#addIssueModal');
     }
     if (mode === 'edit') {
-      this.editIssue= issue;
+      this.editIssue = issue;
       button.setAttribute('data-target', '#updateIssueModal');
     }
     if (mode === 'delete') {

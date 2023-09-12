@@ -14,6 +14,11 @@ export class IssueService {
   public getIssues(): Observable<Issue[]> {
     return this.http.get<Issue[]>(`${environment.apiBaseUrl}/issue/all`);
   }
+
+  public getIssueById(): Observable<void> {
+    return this.http.get<void>(`${environment.apiBaseUrl}/issue/find/{id}`);
+  }
+
   public addIssue(issue: Issue): Observable<Issue> {
     return this.http.post<Issue>(`${environment.apiBaseUrl}/issue/add`, issue);
   }

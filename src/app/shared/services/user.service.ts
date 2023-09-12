@@ -10,6 +10,6 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAllSuppliers(): Observable<string[]> {
-    return this.http.get<string[]>("");
+    return this.http.get<string[]>("fullname");
   }
 }
