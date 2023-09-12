@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
 import { User } from '../../shared/models/user';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ export class RegisterComponent implements OnInit {
   password: string = '';
   email: string = '';
   confirmPassword: string = '';
-  role: string = '';
+  role: 'tenant' | 'admin' | 'supplier' | '' = '';
   // contract!: number;
 
   user: User = new User();
@@ -35,13 +36,13 @@ export class RegisterComponent implements OnInit {
     this.user.contract;
   }
 
-  signup() {
-    this.user.fullname = this.fullname;
-    this.user.username = this.username;
-    this.user.email = this.email;
-    this.user.password = this.password;
-    this.user.confirmPassword = this.confirmPassword;
-    this.user.role = 'tenant' || 'supplier';
+  signup(f: NgForm) {
+    this.user.fullname = f.value.fullname;
+    this.user.username = f.value.username;
+    this.user.email = f.value.email;
+    this.user.password = f.value.password;
+    this.user.confirmPassword = f.value.confirmPassword;
+    this.user.role = f.value.role;
     this.user.contract;
 
     this.authService.signUp(this.user).subscribe(

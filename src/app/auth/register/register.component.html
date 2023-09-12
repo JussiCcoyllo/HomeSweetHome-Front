@@ -17,7 +17,7 @@
                 <img src="../../assets/images/HomeSweetTr.png" alt="HomeSweetHome"
                      class="img-fluid rounded-circle" width="300" height="300">
               </div>
-              <form (ngSubmit)="signup()">
+              <form #f="ngForm" (ngSubmit)="signup(f)">
                 <div class="form-group" >
                   <label>Fullname</label>
                   <input class="form-control form-control-lg" type="fullname" id="fullname" name="fullname" [(ngModel)]="fullname" placeholder="Enter your name">
@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group">
                   <label>Confirm Password</label>
-                  <input class="form-control form-control-lg" type="password"id="confirmPassword" name="confirmPassword" [(ngModel)]="user.confirmPassword" placeholder="Enter your password">
+                  <input class="form-control form-control-lg" type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="user.confirmPassword" placeholder="Confirm your password">
                   <!-- <small>
                       <a href="pages-reset-password.html">Forgot password?</a>
                   </small> -->
@@ -66,7 +66,7 @@
                 </div> -->
                 <div class="text-center mt-3">
                   <!-- <a href="index.html" class="btn btn-lg btn-primary">Sign up</a> -->
-                  <button type="submit" (click)="signup()" class="btn btn-lg btn-primary">REGISTER</button>
+                  <button type="submit" class="btn btn-lg btn-primary">REGISTER</button>
                 </div>
               </form>
             </div>

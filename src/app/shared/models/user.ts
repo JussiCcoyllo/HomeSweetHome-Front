@@ -5,7 +5,7 @@ export class User {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
-  role: string = '';
+  role: 'tenant' | 'supplier' | 'admin' | '' = '';
   contract!: number;
   token: string = '';
 }

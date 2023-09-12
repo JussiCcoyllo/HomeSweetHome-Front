@@ -15,8 +15,8 @@ export class AuthService {
     this.signUpUrl = 'http://localhost:8080/auth/register';
   }
 
-  login(user: User): Observable<any> {
-    return this.http.post<any>(this.loginUrl, user);
+  login(user: User): Observable<User> {
+    return this.http.post<User>(this.loginUrl, user);
   }
 
   signUp(user: User): Observable<any> {

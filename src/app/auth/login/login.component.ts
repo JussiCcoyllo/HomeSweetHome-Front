@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../shared/models/user';
 import { AuthService } from '../../shared/services/auth.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { AuthService } from '../../shared/services/auth.service';
 export class LoginComponent implements OnInit {
   username: string = '';
   password: string = '';
-  role: string = '';
+  role: 'tenant' | 'supplier' | 'admin' | '' = '';
 
   user: User = new User();
 
@@ -27,10 +28,13 @@ export class LoginComponent implements OnInit {
     this.role='';
   }
 
-  login() {
-    this.user.username = this.username;
-    this.user.password = this.password;
-    this.user.role = this.role;
+  login(f: NgForm) {
+    if(!f.valid) {return;}
+    this.user.username = f.value.username;
+    this.user.password = f.value.password;
+    this.user.role = f.value.role;
+
+    console.log(JSON.stringify(this.user))
 
     this.authService.login(this.user).subscribe(
       (res) => {
@@ -41,13 +45,13 @@ export class LoginComponent implements OnInit {
           console.log('Login successful');
           localStorage.setItem('token', res.token);
 
-          if (this.role == 'tenant') {
+          if (res.role == 'tenant') {
             this.route.navigate(['/tenant']);
           }
-          if (this.role == 'supplier') {
+          if (res.role == 'supplier') {
             this.route.navigate(['/supplier']);
           }
-          if (this.role == 'admin') {
+          if (res.role == 'admin') {
             this.route.navigate(['/admin']);
           }
         }

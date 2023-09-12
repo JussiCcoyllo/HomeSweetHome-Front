@@ -142,7 +142,7 @@
               <label>Assing supplier</label>
               <select class="form-control form-control-lg" type="role" name="role" placeholder="Enter your role">
                 <option value="">--Please choose an option--</option>
-                <!-- <option *ngFor="let DROPDOWN_LIST of DROPDOWN_LIST">{{DROPDOWN_LIST.name}}</option> -->
+                <option *ngFor="let it of DROPDOWN_LIST">{{it}}</option>
               </select>
             </div>
             <div class="modal-footer">

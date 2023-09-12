@@ -4,6 +4,7 @@ import { Property } from '../../app/shared/models/property';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '../shared/services/user.service';
 
 
 
@@ -16,14 +17,21 @@ export class AdminComponent implements OnInit {
   public properties!: Property[];
   public editProperty!: Property;
   public deleteProperty!: Property;
+  DROPDOWN_LIST: string[] = [];
 
   constructor(
     private propertyService: PropertyService,
+    private userService: UserService,
     private route: Router
   ) {}
 
   ngOnInit(): void {
     this.getProperties();
+    this.userService.getAllSuppliers().subscribe(
+      (res) => {
+        this.DROPDOWN_LIST = res;
+      }
+    )
   }
 
   logout() {
