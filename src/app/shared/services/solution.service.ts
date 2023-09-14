@@ -8,10 +8,10 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class SolutionService {
-  getSolutions: any;
+  
   constructor(private http: HttpClient) {}
 
-  public getProperties(): Observable<Solution[]> {
+  public getSolutions(): Observable<Solution[]> {
     return this.http.get<Solution[]>(`${environment.apiBaseUrl}/solution/all`);
   }
   public addSolution(solution: Solution): Observable<Solution> {

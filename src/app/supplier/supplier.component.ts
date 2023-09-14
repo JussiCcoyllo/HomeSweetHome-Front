@@ -21,7 +21,7 @@ export class SupplierComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.getSolutions();
+    this.getSolutions();
   }
 
   logout(): void {
