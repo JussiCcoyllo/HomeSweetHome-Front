@@ -63,6 +63,7 @@ export class SupplierComponent implements OnInit {
   }
 
   public onUpdateSolution(solution: Solution): void {
+    solution.id = this.editSolution.id;
     this.solutionService.updateSolution(solution).subscribe(
       (response: Solution) => {
         console.log(response);

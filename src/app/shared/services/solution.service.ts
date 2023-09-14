@@ -28,7 +28,7 @@ export class SolutionService {
   }
   public deleteSolution(solutionId: number): Observable<void> {
     return this.http.delete<void>(
-      `${environment.apiBaseUrl}/Solution/delete/${solutionId}`
+      `${environment.apiBaseUrl}/solution/delete/${solutionId}`
     );
   }
 }
